@@ -1,0 +1,108 @@
+/*
+JACC Star Wars themed animations and utilities
+*/
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px oklch(0.75 0.15 200), 0 0 10px oklch(0.75 0.15 200);
+        opacity: 1;
+    }
+
+    50% {
+        box-shadow: 0 0 10px oklch(0.75 0.15 200), 0 0 20px oklch(0.75 0.15 200), 0 0 30px oklch(0.75 0.15 200);
+        opacity: 0.8;
+    }
+}
+
+.animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* JACC Card Styling */
+.jacc-card {
+    background: var(--card);
+    border: 1px solid oklch(0.2 0.05 230 / 40%);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+
+.jacc-card:hover {
+    border-color: oklch(0.75 0.15 200);
+    box-shadow: 0 0 15px oklch(0.75 0.15 200 / 20%);
+}
+
+.jacc-card-header {
+    border-bottom: 1px solid oklch(0.75 0.15 200);
+    padding: 1rem;
+    background: linear-gradient(180deg, oklch(0.2 0.05 230 / 20%) 0%, transparent 100%);
+}
+
+/* Status Badge Colors */
+.status-active {
+    background: oklch(0.7 0.18 140 / 20%);
+    border-color: oklch(0.7 0.18 140);
+    color: oklch(0.7 0.18 140);
+}
+
+.status-training {
+    background: oklch(0.75 0.15 200 / 20%);
+    border-color: oklch(0.75 0.15 200);
+    color: oklch(0.75 0.15 200);
+}
+
+.status-on-mission {
+    background: oklch(0.85 0.12 80 / 20%);
+    border-color: oklch(0.85 0.12 80);
+    color: oklch(0.85 0.12 80);
+}
+
+.status-resting {
+    background: oklch(0.5 0 0 / 20%);
+    border-color: oklch(0.6 0 0);
+    color: oklch(0.6 0 0);
+}
+
+/* Priority Colors */
+.priority-critical {
+    background: oklch(0.65 0.2 25 / 20%);
+    border-color: oklch(0.65 0.2 25);
+    color: oklch(0.65 0.2 25);
+}
+
+.priority-high {
+    background: oklch(0.75 0.15 40 / 20%);
+    border-color: oklch(0.75 0.15 40);
+    color: oklch(0.75 0.15 40);
+}
+
+.priority-medium {
+    background: oklch(0.85 0.12 80 / 20%);
+    border-color: oklch(0.85 0.12 80);
+    color: oklch(0.85 0.12 80);
+}
+
+.priority-low {
+    background: oklch(0.75 0.15 200 / 20%);
+    border-color: oklch(0.75 0.15 200);
+    color: oklch(0.75 0.15 200);
+}
+
+/* Severity Colors */
+.severity-critical {
+    background: oklch(0.65 0.2 25 / 20%);
+    border-color: oklch(0.65 0.2 25);
+    color: oklch(0.65 0.2 25);
+}
+
+.severity-warning {
+    background: oklch(0.85 0.12 80 / 20%);
+    border-color: oklch(0.85 0.12 80);
+    color: oklch(0.85 0.12 80);
+}
+
+.severity-info {
+    background: oklch(0.75 0.15 200 / 20%);
+    border-color: oklch(0.75 0.15 200);
+    color: oklch(0.75 0.15 200);
+}

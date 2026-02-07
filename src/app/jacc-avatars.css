@@ -1,0 +1,59 @@
+/* ============================================
+   JACC MESSAGE AVATARS (Star Wars Theme)
+   ============================================ */
+
+/* Add avatar to all messages */
+[data-message-role]::before {
+    content: '';
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 12px;
+    margin-top: 4px;
+    flex-shrink: 0;
+    background: oklch(0.15 0.02 240);
+    border: 2px solid oklch(0.75 0.15 200);
+    box-shadow: 0 0 10px oklch(0.75 0.15 200 / 0.3);
+}
+
+/* User Avatar - Replace with your own image */
+[data-message-role="user"]::before {
+    content: '';
+    background: linear-gradient(135deg, oklch(0.2 0.05 240), oklch(0.25 0.03 200));
+    background-image: url('/avatars/user-avatar.png');
+    /* REPLACE THIS PATH with your user avatar image */
+    background-size: cover;
+    background-position: center;
+    border-color: oklch(0.8 0.15 200);
+}
+
+/* Assistant Avatar - Replace with your own image */
+[data-message-role="assistant"]::before {
+    content: '';
+    background: linear-gradient(135deg, oklch(0.25 0.08 150), oklch(0.2 0.05 120));
+    background-image: url('/avatars/assistant-avatar.png');
+    /* REPLACE THIS PATH with your assistant avatar image */
+    background-size: cover;
+    background-position: center;
+    border-color: oklch(0.7 0.15 150);
+    box-shadow: 0 0 12px oklch(0.7 0.15 150 / 0.4);
+}
+
+/* Layout adjustment for messages with avatars */
+[data-message-role] {
+    display: flex !important;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Ensure message content takes remaining space */
+[data-message-role]>div {
+    flex: 1;
+    min-width: 0;
+}

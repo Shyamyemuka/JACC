@@ -1,0 +1,42 @@
+/* ============================================================================
+   ENHANCED FUTURISTIC TYPOGRAPHY
+   ============================================================================ */
+
+/* Headers with futuristic glow */
+h1,
+h2,
+h3 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px oklch(0.7 0.2 200 / 0.3);
+}
+
+/* Body text - clean and formal */
+body,
+p,
+span {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+}
+
+/* Input fields - futuristic styling */
+input,
+textarea {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 2px oklch(0.7 0.2 200 / 0.3),
+        0 0 20px oklch(0.7 0.2 200 / 0.2);
+}
+
+/* Button text */
+button {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
