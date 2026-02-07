@@ -7,9 +7,7 @@
  */
 
 
-import PersonnelTracker from "@/components/tambo/personnel-tracker";
-import MissionBriefing from "@/components/tambo/mission-briefing";
-import ResourceInventory from "@/components/tambo/resource-inventory";
+
 import AlertPanel from "@/components/tambo/alert-panel";
 import TimetableView from "@/components/tambo/timetable-view";
 import StudyPlanView from "@/components/tambo/study-plan-view";
@@ -23,14 +21,8 @@ import CollegeDashboard from "@/components/tambo/college-dashboard";
 import ExamCountdownEnhanced from "@/components/tambo/exam-countdown-enhanced";
 
 import {
-  personnelTrackerSchema,
-  missionBriefingSchema,
-  resourceInventorySchema,
   statsDashboardSchema,
   alertPanelSchema,
-  personnelSchema,
-  missionSchema,
-  resourceSchema,
   alertSchema,
   timetableViewSchema,
   studyPlanViewSchema,
@@ -49,9 +41,6 @@ import {
 } from "@/lib/schemas";
 
 import {
-  getPersonnel,
-  getMissions,
-  getResources,
   getStatistics,
   getAlerts,
 } from "@/services/mock-data";
@@ -78,64 +67,17 @@ import { z } from "zod";
  */
 export const tools: TamboTool[] = [
   {
-    name: "get-personnel",
-    description:
-      "Retrieves personnel/staff data. Call this when you need to display information about team members, staff, employees, or people. Supports filtering by status (Active, Training, On Assignment, Resting).",
-    tool: (input: { status?: string }) => getPersonnel(input),
-    inputSchema: z.object({
-      status: z
-        .string()
-        .optional()
-        .describe("Filter by status: Active, Training, On Mission, or Resting"),
-    }),
-    outputSchema: z.array(personnelSchema),
-  },
-  {
-    name: "get-missions",
-    description:
-      "Retrieves mission data from the academy. Call this when you need to display missions, operations, tasks, or assignments. Supports filtering by status and priority.",
-    tool: (input: { status?: string; priority?: string }) => getMissions(input),
-    inputSchema: z.object({
-      status: z
-        .string()
-        .optional()
-        .describe("Filter by status: Planning, Active, Completed, or On Hold"),
-      priority: z
-        .string()
-        .optional()
-        .describe("Filter by priority: Low, Medium, High, or Critical"),
-    }),
-    outputSchema: z.array(missionSchema),
-  },
-  {
-    name: "get-resources",
-    description:
-      "Retrieves resource inventory data. Call this when you need to check inventory, supplies, equipment, vehicles, or technology. Supports filtering by category.",
-    tool: (input: { category?: string }) => getResources(input),
-    inputSchema: z.object({
-      category: z
-        .string()
-        .optional()
-        .describe(
-          "Filter by category: Equipment, Supplies, Vehicles, or Technology"
-        ),
-    }),
-    outputSchema: z.array(resourceSchema),
-  },
-  {
     name: "get-statistics",
     description:
       "Retrieves dashboard statistics and key metrics. Call this when you need to show a status overview, summary, dashboard, or academy-wide metrics.",
     tool: () => getStatistics(),
     inputSchema: z.object({}),
     outputSchema: z.object({
-      totalPersonnel: z.number(),
-      activePersonnel: z.number(),
-      totalMissions: z.number(),
-      activeMissions: z.number(),
-      completedMissions: z.number(),
-      resourceUtilization: z.number(),
-      trainingSessionsToday: z.number(),
+      totalAssignments: z.number(),
+      completedAssignments: z.number(),
+      upcomingClasses: z.number(),
+      upcomingExams: z.number(),
+      activeReminders: z.number(),
       activeAlerts: z.number(),
     }),
   },
@@ -222,27 +164,7 @@ export const tools: TamboTool[] = [
  * based on user conversations and intents.
  */
 export const components: TamboComponent[] = [
-  {
-    name: "PersonnelTracker",
-    description:
-      "Displays team members/staff in a grid of cards showing name, role, status, specialty, and skill level. Use this component when the user asks about personnel, team members, staff, employees, or specific people. Shows visual progress bars for skill levels and color-coded status indicators.",
-    component: PersonnelTracker,
-    propsSchema: personnelTrackerSchema,
-  },
-  {
-    name: "MissionBriefing",
-    description:
-      "Displays project/task information with details like title, description, priority, status, progress, objectives, and assigned team. Use when the user asks about projects, tasks, assignments, work items, or objectives. Includes progress bars and priority badges.",
-    component: MissionBriefing,
-    propsSchema: missionBriefingSchema,
-  },
-  {
-    name: "ResourceInventory",
-    description:
-      "Displays resource inventory with quantities, categories, status, and locations. Use when the user asks about resources, inventory, supplies, equipment, vehicles, technology, or stock levels. Shows low stock warnings and quantity bars.",
-    component: ResourceInventory,
-    propsSchema: resourceInventorySchema,
-  },
+
   {
     name: "AlertPanel",
     description:

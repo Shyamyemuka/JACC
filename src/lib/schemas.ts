@@ -6,83 +6,18 @@
 import { z } from "zod";
 
 // ============================================================================
-// PERSONNEL SCHEMAS
-// ============================================================================
-
-export const personnelSchema = z.object({
-    id: z.string(),
-    name: z.string(),
-    rank: z.enum(["Initiate", "Padawan", "Knight", "Master"]),
-    status: z.enum(["Active", "Training", "On Mission", "Resting"]),
-    specialty: z.enum(["Combat", "Healing", "Diplomacy", "Engineering", "Research"]),
-    skillLevel: z.number().min(1).max(100),
-    joinDate: z.string(),
-    currentMission: z.string().nullable(),
-});
-
-export const personnelTrackerSchema = z.object({
-    personnel: z.array(personnelSchema),
-    title: z.string().optional(),
-    filterByStatus: z.string().optional(),
-});
-
-// ============================================================================
-// MISSION SCHEMAS
-// ============================================================================
-
-export const missionSchema = z.object({
-    id: z.string(),
-    title: z.string(),
-    description: z.string(),
-    priority: z.enum(["Low", "Medium", "High", "Critical"]),
-    status: z.enum(["Planning", "Active", "Completed", "On Hold"]),
-    assignedPersonnel: z.array(z.string()),
-    startDate: z.string(),
-    deadline: z.string(),
-    location: z.string(),
-    objectives: z.array(z.string()),
-    progress: z.number().min(0).max(100),
-});
-
-export const missionBriefingSchema = z.object({
-    missions: z.array(missionSchema),
-    title: z.string().optional(),
-});
-
-// ============================================================================
-// RESOURCE SCHEMAS
-// ============================================================================
-
-export const resourceSchema = z.object({
-    id: z.string(),
-    name: z.string(),
-    category: z.enum(["Equipment", "Supplies", "Vehicles", "Technology"]),
-    quantity: z.number(),
-    maxQuantity: z.number(),
-    status: z.enum(["Available", "Low Stock", "Out of Stock", "Reserved"]),
-    location: z.string(),
-});
-
-export const resourceInventorySchema = z.object({
-    resources: z.array(resourceSchema),
-    title: z.string().optional(),
-    filterByCategory: z.string().optional(),
-});
-
-// ============================================================================
 // STATISTICS SCHEMAS
 // ============================================================================
 
 export const statisticsSchema = z.object({
-    totalPersonnel: z.number(),
-    activePersonnel: z.number(),
-    totalMissions: z.number(),
-    activeMissions: z.number(),
-    completedMissions: z.number(),
-    resourceUtilization: z.number(),
-    trainingSessionsToday: z.number(),
+    totalAssignments: z.number(),
+    completedAssignments: z.number(),
+    upcomingClasses: z.number(),
+    upcomingExams: z.number(),
+    activeReminders: z.number(),
     activeAlerts: z.number(),
 });
+
 
 export const statsDashboardSchema = z.object({
     stats: statisticsSchema,
@@ -100,7 +35,7 @@ export const alertSchema = z.object({
     severity: z.enum(["Info", "Warning", "Critical"]),
     timestamp: z.string(),
     isRead: z.boolean(),
-    category: z.enum(["Security", "System", "Personnel", "Mission"]),
+    category: z.enum(["Security", "System", "Personnel", "Mission", "Academic"]),
 });
 
 export const alertPanelSchema = z.object({
@@ -109,28 +44,6 @@ export const alertPanelSchema = z.object({
     filterBySeverity: z.string().optional(),
 });
 
-// ============================================================================
-// TRAINING SCHEMAS
-// ============================================================================
-
-export const trainingSessionSchema = z.object({
-    id: z.string(),
-    title: z.string(),
-    instructor: z.string(),
-    date: z.string(),
-    startTime: z.string(),
-    endTime: z.string(),
-    location: z.string(),
-    type: z.enum(["Combat", "Meditation", "Diplomacy", "Technical"]),
-    participants: z.number(),
-    maxParticipants: z.number(),
-});
-
-export const trainingScheduleSchema = z.object({
-    sessions: z.array(trainingSessionSchema),
-    title: z.string().optional(),
-    date: z.string().optional(),
-});
 
 // ============================================================================
 // COLLEGE ASSISTANT SCHEMAS

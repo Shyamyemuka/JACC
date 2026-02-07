@@ -75,13 +75,10 @@ Advanced countdown timer with **color-coded urgency**:
 - Instructor information
 - Class timings and locations
 
-### 🌌 Star Wars Theme Features
+### 🌌 Additional Features
 
-#### Command Center Components
-- **Personnel Tracker**: Padawan and Jedi rankings
-- **Mission Briefing**: Active mission status with progress bars
-- **Resource Inventory**: Equipment and supply tracking
-- **Statistics Dashboard**: Academy-wide metrics
+#### System Components
+- **Statistics Dashboard**: Academy-wide metrics and overview
 - **Alert Panel**: System alerts by severity
 
 ---
@@ -139,12 +136,9 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 "Remind me to submit report on 2026-02-15"
 ```
 
-### Star Wars Theme Commands
+### Additional Commands
 
 ```
-"Show personnel tracker"
-"Display mission briefing"
-"Check resource inventory"
 "Show statistics"
 "Display alerts"
 ```
@@ -200,14 +194,11 @@ src/
 | `SubjectInfoCard` | Subject details | "subject info", "course details" |
 | `AddAssignmentForm` | Create new assignment | "add assignment" |
 
-#### Star Wars Components
+#### System Components
 | Component | Description |
 |-----------|-------------|
-| `PersonnelTracker` | Jedi and Padawan status |
-| `MissionBriefing` | Active missions display |
-| `ResourceInventory` | Equipment tracking |
-| `StatsDashboard` | Academy metrics |
-| `AlertPanel` | System notifications |
+| `StatsDashboard` | Academy metrics and statistics |
+| `AlertPanel` | System notifications and alerts |
 
 ---
 
