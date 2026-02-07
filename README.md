@@ -1,6 +1,8 @@
-# JACC - Jedi Academy Command Center
-
 <div align="center">
+
+<img src="public/avatars/assistant-avatar.png" alt="JACC Logo" width="120"/>
+
+# JACC - Jedi Academy Command Center
 
 **An AI-Driven College Assistant with Star Wars Theming**
 
