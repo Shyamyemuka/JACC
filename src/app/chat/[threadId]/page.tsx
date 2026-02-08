@@ -62,23 +62,28 @@ export default function ChatThreadPage() {
  * Component to initialize the thread from URL parameter
  */
 function ThreadInitializer({ threadId }: { threadId: string }) {
-    const { switchCurrentThread, thread } = useTamboThread();
+    const { switchCurrentThread, startNewThread, thread } = useTamboThread();
     const router = useRouter();
 
     useEffect(() => {
+        // Handle special "new" thread ID - create a new thread
+        if (threadId === "new") {
+            startNewThread();
+            return;
+        }
+
         // If threadId is provided and different from current thread, switch to it
-        if (threadId && threadId !== thread?.id) {
+        if (threadId && threadId !== thread?.id && threadId !== "new") {
             switchCurrentThread(threadId);
         }
-    }, [threadId, thread?.id, switchCurrentThread]);
+    }, [threadId, thread?.id, switchCurrentThread, startNewThread]);
 
-    // If thread doesn't exist after attempting to load, redirect to new thread
+    // Redirect to the actual thread ID after creating new thread
     useEffect(() => {
-        if (threadId && thread && thread.id !== threadId) {
-            // Thread doesn't exist, could redirect or show error
-            console.warn(`Thread ${threadId} not found`);
+        if (threadId === "new" && thread?.id) {
+            router.replace(`/chat/${thread.id}`);
         }
-    }, [threadId, thread, router]);
+    }, [threadId, thread?.id, router]);
 
     return null;
 }

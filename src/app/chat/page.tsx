@@ -1,58 +1,53 @@
 "use client";
 
-import { useEffect } from "react";
-import * as React from "react";
-import { useRouter } from "next/navigation";
-import { useTamboThread } from "@tambo-ai/react";
-import { TamboProvider } from "@tambo-ai/react";
+import { MessageThreadFull } from "@/components/tambo/message-thread-full";
 import { useMcpServers } from "@/components/tambo/mcp-config-modal";
 import { components, tools } from "@/lib/tambo";
+import { TamboProvider } from "@tambo-ai/react";
+import JaccHeader from "@/components/jacc-header";
+import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
+import { useEffect } from "react";
+import { CollegeDataProvider } from "@/context/college-data-context";
 
 /**
- * Redirect /chat to a new thread
- * This ensures users always have a threadId in the URL
+ * JACC - Jedi Academy Command Center
+ * Main chat interface for interacting with the academy's systems
  */
-export default function ChatRedirect() {
+export default function Home() {
+  // Load MCP server configurations
   const mcpServers = useMcpServers();
 
+  // Ensure dark mode is enabled
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
+
   return (
-    <TamboProvider
-      apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
-      components={components}
-      tools={tools}
-      tamboUrl={process.env.NEXT_PUBLIC_TAMBO_URL}
-      mcpServers={mcpServers}
-    >
-      <RedirectToNewThread />
-    </TamboProvider>
+    <CollegeDataProvider>
+      <TamboProvider
+        apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
+        components={components}
+        tools={tools}
+        tamboUrl={process.env.NEXT_PUBLIC_TAMBO_URL}
+        mcpServers={mcpServers}
+      >
+        {/* Animated Shader Background - Extended coverage for consistent flow */}
+        <div className="fixed inset-0 z-0" style={{ height: '150vh', top: '-20vh' }}>
+          <AnimatedShaderBackground />
+        </div>
+
+        <div className="h-screen flex flex-col relative z-10">
+          {/* JACC Header */}
+          <JaccHeader />
+
+          {/* Chat Container */}
+          <div className="flex-1 overflow-hidden">
+            <MessageThreadFull className="w-full h-full px-4" />
+          </div>
+        </div>
+      </TamboProvider>
+    </CollegeDataProvider>
   );
 }
 
-function RedirectToNewThread() {
-  const router = useRouter();
-  const { thread, startNewThread } = useTamboThread();
-  const [hasInitialized, setHasInitialized] = React.useState(false);
-  const previousThreadIdRef = React.useRef<string | undefined>(thread?.id);
 
-  // Create a new thread on mount
-  useEffect(() => {
-    if (!hasInitialized) {
-      setHasInitialized(true);
-      startNewThread();
-    }
-  }, [hasInitialized, startNewThread]);
-
-  // Navigate when thread is created
-  useEffect(() => {
-    if (hasInitialized && thread?.id && thread.id !== previousThreadIdRef.current) {
-      router.replace(`/chat/${thread.id}`);
-    }
-    previousThreadIdRef.current = thread?.id;
-  }, [thread?.id, hasInitialized, router]);
-
-  return (
-    <div className="h-screen flex items-center justify-center">
-      <p className="text-muted-foreground">Loading chat...</p>
-    </div>
-  );
-}
