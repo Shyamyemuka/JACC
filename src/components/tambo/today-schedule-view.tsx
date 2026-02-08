@@ -18,7 +18,7 @@ interface TodayScheduleViewProps {
     title?: string;
 }
 
-const TodayScheduleView: React.FC<TodayScheduleViewProps> = ({ day, schedule, title }) => {
+const TodayScheduleView: React.FC<TodayScheduleViewProps> = ({ day, schedule = [], title }) => {
     // Get current time to highlight current/upcoming class
     const now = new Date();
     const currentTime = now.getHours() * 60 + now.getMinutes(); // minutes since midnight
@@ -31,6 +31,7 @@ const TodayScheduleView: React.FC<TodayScheduleViewProps> = ({ day, schedule, ti
     };
 
     const findCurrentClass = () => {
+        if (!schedule || schedule.length === 0) return -1;
         for (let i = 0; i < schedule.length; i++) {
             const entry = schedule[i];
             const startTime = parseTime(entry.time);
@@ -75,7 +76,7 @@ const TodayScheduleView: React.FC<TodayScheduleViewProps> = ({ day, schedule, ti
 
             {/* Timeline */}
             <div className="space-y-4">
-                {schedule.map((entry, index) => {
+                {schedule?.length > 0 && schedule.map((entry, index) => {
                     const isCurrent = index === currentClassIndex;
                     const isLunch = entry.subject === "LUNCH";
 
@@ -93,20 +94,20 @@ const TodayScheduleView: React.FC<TodayScheduleViewProps> = ({ day, schedule, ti
                             {/* Card */}
                             <div
                                 className={`relative flex gap-4 p-5 rounded-lg border transition-all duration-300 ${isCurrent
-                                        ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400 shadow-lg shadow-cyan-500/20 scale-105'
-                                        : isLunch
-                                            ? 'bg-slate-800/30 border-slate-600/50'
-                                            : 'bg-slate-800/50 border-slate-700/50 hover:border-cyan-500/50 hover:shadow-md'
+                                    ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400 shadow-lg shadow-cyan-500/20 scale-105'
+                                    : isLunch
+                                        ? 'bg-slate-800/30 border-slate-600/50'
+                                        : 'bg-slate-800/50 border-slate-700/50 hover:border-cyan-500/50 hover:shadow-md'
                                     }`}
                             >
                                 {/* Time Badge */}
                                 <div className={`flex-shrink-0 ${isCurrent ? 'animate-pulse' : ''}`}>
                                     <div
                                         className={`w-12 h-12 rounded-full flex items-center justify-center ${isCurrent
-                                                ? 'bg-cyan-500 text-black'
-                                                : isLunch
-                                                    ? 'bg-slate-700 text-gray-400'
-                                                    : 'bg-slate-700 text-cyan-400'
+                                            ? 'bg-cyan-500 text-black'
+                                            : isLunch
+                                                ? 'bg-slate-700 text-gray-400'
+                                                : 'bg-slate-700 text-cyan-400'
                                             }`}
                                     >
                                         <Clock className="w-5 h-5" />

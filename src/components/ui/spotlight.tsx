@@ -71,11 +71,11 @@ export function Spotlight({
                 className
             )}
             style={{
-                width: size,
-                height: size,
+                width: `${size}px`,
+                height: `${size}px`,
                 left: spotlightLeft,
                 top: spotlightTop,
-            }}
+            } as React.CSSProperties}
         />
     );
 }
