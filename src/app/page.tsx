@@ -23,9 +23,17 @@ export default function Home() {
 
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                JACC
-              </h1>
+              {/* Logo */}
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src="/avatars/assistant-avatar.png"
+                  alt="JACC Logo"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg"
+                />
+                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  JACC
+                </h1>
+              </div>
               <p className="text-xl md:text-2xl text-gray-700 font-semibold">
                 Jedi Academy Command Center
               </p>
