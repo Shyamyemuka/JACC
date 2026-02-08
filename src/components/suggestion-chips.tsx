@@ -6,7 +6,7 @@
 "use client";
 
 import React from "react";
-import { Users, Target, Package, Activity, AlertCircle } from "lucide-react";
+import { Calendar, BookOpen, Clock, Bell, LayoutDashboard } from "lucide-react";
 
 interface SuggestionChipsProps {
     onChipClick: (message: string) => void;
@@ -14,29 +14,29 @@ interface SuggestionChipsProps {
 
 const suggestions = [
     {
-        icon: Activity,
-        label: "Status Overview",
-        message: "Show me the current status of the academy",
+        icon: LayoutDashboard,
+        label: "Dashboard",
+        message: "Show me my college dashboard",
     },
     {
-        icon: Users,
-        label: "Active Personnel",
-        message: "Show me all active personnel",
+        icon: BookOpen,
+        label: "Assignments",
+        message: "Show me all my assignments",
     },
     {
-        icon: Target,
-        label: "Current Missions",
-        message: "What are our active missions?",
+        icon: Clock,
+        label: "Exam Countdown",
+        message: "When is my next exam?",
     },
     {
-        icon: Package,
-        label: "Resource Inventory",
-        message: "Show me the resource inventory",
+        icon: Calendar,
+        label: "Today's Schedule",
+        message: "Show me today's class schedule",
     },
     {
-        icon: AlertCircle,
-        label: "Recent Alerts",
-        message: "Show me recent alerts",
+        icon: Bell,
+        label: "Reminders",
+        message: "Show me my upcoming reminders",
     },
 ];
 

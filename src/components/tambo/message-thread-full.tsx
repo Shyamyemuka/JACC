@@ -70,33 +70,33 @@ export const MessageThreadFull = React.forwardRef<
   const defaultSuggestions: Suggestion[] = [
     {
       id: "suggestion-1",
-      title: "Status Overview",
-      detailedSuggestion: "Show me the academy status dashboard",
-      messageId: "status-overview",
+      title: "Show Dashboard",
+      detailedSuggestion: "Show me my college dashboard",
+      messageId: "dashboard-overview",
     },
     {
       id: "suggestion-2",
-      title: "Active Personnel",
-      detailedSuggestion: "Show me all active personnel",
-      messageId: "active-personnel",
+      title: "My Assignments",
+      detailedSuggestion: "Show me all my assignments",
+      messageId: "view-assignments",
     },
     {
       id: "suggestion-3",
-      title: "Current Missions",
-      detailedSuggestion: "What are our current active missions?",
-      messageId: "active-missions",
+      title: "Exam Countdown",
+      detailedSuggestion: "When is my next exam?",
+      messageId: "exam-countdown",
     },
     {
       id: "suggestion-4",
-      title: "Resource Inventory",
-      detailedSuggestion: "Show me the resource inventory",
-      messageId: "resource-inventory",
+      title: "Today's Schedule",
+      detailedSuggestion: "Show me today's class schedule",
+      messageId: "todays-schedule",
     },
     {
       id: "suggestion-5",
-      title: "Critical Alerts",
-      detailedSuggestion: "Show me critical alerts",
-      messageId: "critical-alerts",
+      title: "My Reminders",
+      detailedSuggestion: "Show me my upcoming reminders",
+      messageId: "view-reminders",
     },
   ];
 
