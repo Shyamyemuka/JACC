@@ -23,7 +23,7 @@ const ExamCountdownCard: React.FC<ExamCountdownCardProps> = ({
         );
     }
 
-    const isUrgent = exam.daysRemaining <= 7;
+    const isUrgent = (exam.daysRemaining ?? Infinity) <= 7;
 
     return (
         <div className="w-full my-4">
@@ -44,10 +44,10 @@ const ExamCountdownCard: React.FC<ExamCountdownCardProps> = ({
                     <div className={`relative w-40 h-40 rounded-full flex items-center justify-center ${isUrgent ? 'bg-gradient-to-br from-amber-500/20 to-red-500/20 border-4 border-amber-500/50' : 'bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border-4 border-cyan-500/50'} shadow-lg`}>
                         <div className="text-center">
                             <div className={`text-6xl font-bold ${isUrgent ? 'text-amber-400' : 'text-cyan-400'}`}>
-                                {exam.daysRemaining}
+                                {exam.daysRemaining ?? 0}
                             </div>
                             <div className="text-sm text-gray-400 font-semibold mt-1">
-                                {exam.daysRemaining === 1 ? 'DAY' : 'DAYS'}
+                                {(exam.daysRemaining ?? 0) === 1 ? 'DAY' : 'DAYS'}
                             </div>
                         </div>
                     </div>
