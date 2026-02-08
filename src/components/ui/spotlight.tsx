@@ -75,7 +75,7 @@ export function Spotlight({
                 height: `${size}px`,
                 left: spotlightLeft,
                 top: spotlightTop,
-            } as React.CSSProperties}
+            }}
         />
     );
 }
