@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import React, { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 /**
  * Context for sharing thread history state and functions
@@ -233,17 +234,32 @@ const ThreadHistoryNewButton = React.forwardRef<
 >(({ ...props }, ref) => {
   const { isCollapsed, startNewThread, refetch, onThreadChange } =
     useThreadHistoryContext();
+  const router = useRouter();
+  const { thread } = useTamboThread();
+  const [isCreatingNewThread, setIsCreatingNewThread] = React.useState(false);
+  const previousThreadIdRef = React.useRef<string | undefined>(thread?.id);
+
+  // Navigate when thread changes after creating new thread
+  React.useEffect(() => {
+    if (isCreatingNewThread && thread?.id && thread.id !== previousThreadIdRef.current) {
+      setIsCreatingNewThread(false);
+      router.push(`/chat/${thread.id}`);
+    }
+    previousThreadIdRef.current = thread?.id;
+  }, [thread?.id, isCreatingNewThread, router]);
 
   const handleNewThread = React.useCallback(
     async (e?: React.MouseEvent) => {
       if (e) e.stopPropagation();
 
       try {
+        setIsCreatingNewThread(true);
         await startNewThread();
         await refetch();
         onThreadChange?.();
       } catch (error) {
         console.error("Failed to create new thread:", error);
+        setIsCreatingNewThread(false);
       }
     },
     [startNewThread, refetch, onThreadChange],
@@ -428,11 +444,14 @@ const ThreadHistoryList = React.forwardRef<
     });
   }, [isCollapsed, threads, searchQuery]);
 
+  const router = useRouter();
+
   const handleSwitchThread = async (threadId: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
 
     try {
-      switchCurrentThread(threadId);
+      // Navigate to the thread's URL - this will trigger the thread switch
+      router.push(`/chat/${threadId}`);
       onThreadChange?.();
     } catch (error) {
       console.error("Failed to switch thread:", error);
