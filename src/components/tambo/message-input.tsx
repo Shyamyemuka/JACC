@@ -158,17 +158,17 @@ function useCombinedResourceList(
     () =>
       mcpResources
         ? (
-            mcpResources as {
-              resource: { uri: string; name?: string };
-            }[]
-          ).map((entry) => ({
-            // Use the full URI (already includes serverKey prefix from MCP hook)
-            // When inserted as @{id}, parseResourceReferences will strip serverKey before sending to backend
-            id: entry.resource.uri,
-            name: entry.resource.name ?? entry.resource.uri,
-            icon: React.createElement(AtSign, { className: "w-4 h-4" }),
-            componentData: { type: "mcp-resource", data: entry },
-          }))
+          mcpResources as {
+            resource: { uri: string; name?: string };
+          }[]
+        ).map((entry) => ({
+          // Use the full URI (already includes serverKey prefix from MCP hook)
+          // When inserted as @{id}, parseResourceReferences will strip serverKey before sending to backend
+          id: entry.resource.uri,
+          name: entry.resource.name ?? entry.resource.uri,
+          icon: React.createElement(AtSign, { className: "w-4 h-4" }),
+          componentData: { type: "mcp-resource", data: entry },
+        }))
         : [],
     [mcpResources],
   );
@@ -233,11 +233,11 @@ function useCombinedPromptList(
     () =>
       mcpPrompts
         ? (mcpPrompts as { prompt: { name: string } }[]).map((entry) => ({
-            id: `mcp-prompt:${entry.prompt.name}`,
-            name: entry.prompt.name,
-            icon: React.createElement(FileText, { className: "w-4 h-4" }),
-            text: "", // Text will be fetched when selected via useTamboMcpPrompt
-          }))
+          id: `mcp-prompt:${entry.prompt.name}`,
+          name: entry.prompt.name,
+          icon: React.createElement(FileText, { className: "w-4 h-4" }),
+          text: "", // Text will be fetched when selected via useTamboMcpPrompt
+        }))
         : [],
     [mcpPrompts],
   );
@@ -891,7 +891,7 @@ const MessageInputTextarea = ({
         resources={resourceItems}
         onSearchPrompts={setPromptSearch}
         prompts={promptItems}
-        onResourceSelect={onResourceSelect ?? (() => {})}
+        onResourceSelect={onResourceSelect ?? (() => { })}
         onPromptSelect={handlePromptSelect}
       />
     </div>
@@ -1186,7 +1186,7 @@ MessageInputError.displayName = "MessageInput.Error";
  * Props for the MessageInputFileButton component.
  */
 export interface MessageInputFileButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Accept attribute for file input - defaults to image types */
+  /** Accept attribute for file input - defaults to image and PDF types */
   accept?: string;
   /** Allow multiple file selection */
   multiple?: boolean;
@@ -1209,7 +1209,7 @@ export interface MessageInputFileButtonProps extends React.ButtonHTMLAttributes<
 const MessageInputFileButton = React.forwardRef<
   HTMLButtonElement,
   MessageInputFileButtonProps
->(({ className, accept = "image/*", multiple = true, ...props }, ref) => {
+>(({ className, accept = "image/*,.pdf,application/pdf", multiple = true, ...props }, ref) => {
   const { addImages, images } = useTamboThreadInput();
   const { setImageError } = useMessageInputContext();
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -1245,13 +1245,13 @@ const MessageInputFileButton = React.forwardRef<
   );
 
   return (
-    <Tooltip content="Attach Images" side="top">
+    <Tooltip content="Attach Files (Images, PDFs)" side="top">
       <button
         ref={ref}
         type="button"
         onClick={handleClick}
         className={buttonClasses}
-        aria-label="Attach Images"
+        aria-label="Attach Files"
         data-slot="message-input-file-button"
         {...props}
       >

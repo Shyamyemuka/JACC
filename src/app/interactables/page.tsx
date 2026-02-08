@@ -13,12 +13,14 @@ import {
 } from "@/components/tambo/thread-content";
 import { components, tools } from "@/lib/tambo";
 import { TamboProvider } from "@tambo-ai/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { SettingsPanel } from "./components/settings-panel";
 
 export default function InteractablesPage() {
   const [isChatOpen, setIsChatOpen] = useState(true);
+  const router = useRouter();
 
   return (
     <TamboProvider
@@ -30,14 +32,20 @@ export default function InteractablesPage() {
       <div className="flex h-screen bg-gray-50">
         {/* Chat Sidebar */}
         <div
-          className={`${
-            isChatOpen ? "w-80" : "w-0"
-          } border-r border-gray-200 bg-white transition-all duration-300 flex flex-col relative`}
+          className={`${isChatOpen ? "w-80" : "w-0"
+            } border-r border-gray-200 bg-white transition-all duration-300 flex flex-col relative`}
         >
           {isChatOpen && (
             <>
-              <div className="p-4 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">
+              <div className="p-4 border-b border-gray-200 flex items-center gap-3">
+                <button
+                  onClick={() => router.back()}
+                  className="flex items-center justify-center w-8 h-8 rounded-lg hover:bg-gray-100 transition-colors"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft className="w-5 h-5 text-gray-600" />
+                </button>
+                <h2 className="text-lg font-semibold text-gray-900 flex-1">
                   Chat Assistant
                 </h2>
               </div>

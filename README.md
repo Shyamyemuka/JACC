@@ -75,6 +75,18 @@ Advanced countdown timer with **color-coded urgency**:
 - Instructor information
 - Class timings and locations
 
+#### 7. **PDF & Document Analysis** 📄
+- **Upload PDFs and images** for AI analysis
+- Ask questions about course materials, lecture notes, and textbooks
+- Get explanations of concepts from uploaded documents
+- Multi-file support for comprehensive study sessions
+
+#### 8. **Navigation** 🧭
+- **Browser-style back navigation** on all pages
+- Seamless navigation between landing page, chat interface, and demos
+- Intuitive back button with Star Wars-themed cyan styling
+- Positioned for easy access without cluttering the interface
+
 ### 🌌 Additional Features
 
 #### System Components

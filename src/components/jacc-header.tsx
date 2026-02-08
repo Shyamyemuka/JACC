@@ -6,13 +6,25 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 const JaccHeader: React.FC = () => {
+    const router = useRouter();
     return (
-        <header className="border-b border-cyan-500/30 bg-black/20 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-cyan-500/10">
-            <div className="max-w-6xl mx-auto px-4 py-4">
-                <div className="flex items-center gap-4">
-                    {/* Logo with Yoda */}
+        <header className="border-b border-cyan-500/30 bg-black/20 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-cyan-500/10 relative">
+            {/* Back Button - Absolute Left Edge */}
+            <button
+                onClick={() => router.back()}
+                className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-300 group z-10"
+                aria-label="Go back"
+            >
+                <ArrowLeft className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+            </button>
+
+            <div className="px-4 py-4 pl-20">
+                <div className="flex items-center gap-3">
+                    {/* Logo with Yoda - Left aligned with minimal spacing from back button */}
                     <div className="flex items-center gap-4">
                         <div className="relative group">
                             {/* Assistant Avatar as Logo */}
@@ -41,7 +53,7 @@ const JaccHeader: React.FC = () => {
                     </div>
 
                     {/* Subtitle */}
-                    <div className="hidden md:block flex-1 text-right">
+                    <div className="hidden md:block absolute right-4">
                         <p className="text-sm text-cyan-300/70 italic font-light tracking-wide" style={{ fontFamily: 'Georgia, serif' }}>
                             "May the Force be with you"
                         </p>
