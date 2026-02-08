@@ -13,6 +13,8 @@
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-popover": "^1.1.15",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.51",
     "@tailwindcss/oxide": "^4.1.17",
     "@tambo-ai/react": "^0.70.0",
     "@tambo-ai/typescript-sdk": "^0.84.0",
@@ -26,7 +28,7 @@
     "@tiptap/suggestion": "^3.17.1",
     "class-variance-authority": "^0.7.1",
     "dompurify": "^3.3.0",
-    "framer-motion": "^12.23.24",
+    "framer-motion": "^12.33.0",
     "highlight.js": "^11.11.1",
     "json-stringify-pretty-compact": "^4.0.0",
     "lucide-react": "^0.554.0",

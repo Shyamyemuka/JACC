@@ -31,8 +31,10 @@ export default function Home() {
         tamboUrl={process.env.NEXT_PUBLIC_TAMBO_URL}
         mcpServers={mcpServers}
       >
-        {/* Animated Shader Background */}
-        <AnimatedShaderBackground />
+        {/* Animated Shader Background - Extended coverage for consistent flow */}
+        <div className="fixed inset-0 z-0" style={{ height: '150vh', top: '-20vh' }}>
+          <AnimatedShaderBackground />
+        </div>
 
         <div className="h-screen flex flex-col relative z-10">
           {/* JACC Header */}

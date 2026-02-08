@@ -154,7 +154,8 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 - **Styling**: Tailwind CSS
 - **State Management**: React Context API
 - **Icons**: Lucide React
-- **Animations**: Framer Motion principles
+- **Animations**: Framer Motion
+- **3D Graphics**: Spline, Three.js
 
 ### Project Structure
 ```
@@ -171,6 +172,9 @@ src/
 │   │   ├── timetable-view.tsx
 │   │   └── ...
 │   └── ui/                # Base UI components
+│       ├── spotlight.tsx  # Interactive hover effect
+│       ├── animated-shader-background.tsx
+│       └── ...
 ├── context/               # React Context providers
 │   └── college-data-context.tsx
 ├── lib/
@@ -212,11 +216,13 @@ src/
 - **Background**: Light/white with colorful animated nebula gradients (blue, purple, pink)
 
 ### Interactive Elements
+- **Spotlight Effect**: Mouse-tracking radial gradient hover effect using Framer Motion
 - Glassmorphism cards with blur effects
 - Smooth hover animations (scale transforms)
 - Gradient text for headers
 - Color-coded progress bars
 - Animated countdown timers
+- Spring-based physics animations
 
 ---
 
